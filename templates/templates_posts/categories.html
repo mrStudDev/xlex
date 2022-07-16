@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block posts %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            {% if category_posts %}
+            <h1 style="text-transform: uppercase">Category | {{ cats }}</h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            {% for post in category_posts %}
+                <div class="col-3">
+                    <div class="card" style="width:18rem;">
+                        <div class="card-group" style="width:18rem;">
+                            <img src="{{ post.img_destaque.url }}" style="width:99%; height:138px" class="card-img-top" alt="Hello X'ss"/>
+                            <div class="card-body" style="width:18rem;">
+                                <h6 class="card-title" style="text-transform: uppercase"><a href="{% url 'post-single' post.pk %}">{{ post.title  | slice:":21" }}...</a></h6>
+                                <span class="badge bg-dark"><a href="{% url 'category' post.category %}" style="color:white; font-size:12px; font-family:Calibri;">{{ post.category }}</a></span><br>
+                                <p style="text-align: justify; font-size:15px; font-family:Calibri;">{{ post.meta_description  | safe | slice:":100" }}...</p><hr style="color:brown;">
+                                <small>{{ post.data }}</small><br>
+                                <p style="font-size:10px;"><strong>By:</strong> {{ post.author.first_name }} {{ post.author.last_name }}</p>
+                                <center><a href="{% url 'post-single' post.pk %}"><small>Leia mais</small></a></center>
+                            </div>
+                        </div>
+                    </div><br>
+                </div>
+            {% endfor %}
+        </div>
+        <center>
+            <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+            <br/><br/>
+        </center>
+
+        {% else %}
+            <div class="container-fluid">
+                <div class="container">
+                    <h2>Sorry! This category page does not exist!!!</h2>
+                    <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+                    <br/><br/>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

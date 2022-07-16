@@ -1,0 +1,103 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    </head>     
+    <title>
+    {% block title %}
+    Xlex | Home
+    {% endblock %}
+    </title>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home'%}">XLEX</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'posts-list'%}">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Crypto</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                <small style="color:green;">
+                                    <strong>Admin | </strong><a href="{% url 'logout'%}" style="float:right; color:red"> | Logout >>></a>
+                                </small>
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" style="padding:end;">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:left;">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'add_post'%}">Add Posts</a></li>
+                                <li><a class="dropdown-item" href="">Members</a></li>
+                                <li><a class="dropdown-item" href="">Dashboard</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                </ul>
+            </div>
+            <span class="navbar-text">
+                <small>
+                    <a href="{% url 'register'%}" style="float:left; color:yellow;">Register |</a>
+                    <a href="{% url 'login'%}" style="float:right; color: rgb(5, 255, 5);"> | Login</a>
+                </small>
+            </span>
+    {% endif %}
+        </div>
+    </nav>
+<!-- Fim NAVBAR-->
+
+<!-- Blocks VALIDATION-->
+    {% block login %}
+    {% endblock %}
+    {% block register %}
+    {% endblock %}
+
+<!-- Blocks BODY-->
+<body>
+    <!-- Blocks Components Home-->
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- Blocks Components Posts-->
+        {% block posts %}
+
+        {% endblock %}   
+        {% block teste %}
+
+        {% endblock %}
+
+    <!-- Blocks -->
+        {% block crypto %}
+
+        {% endblock %}
+
+        {% block blog %}
+
+        {% endblock %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

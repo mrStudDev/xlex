@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Xlex | Posts
+{% endblock %}
+
+
+{% block posts %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 style="text-transform: uppercase;">ALL POSTS</h1>
+            <small>| XLEX - News, Crypto, Blog, Nft's... A escolha é sua!!</small>
+        </div>
+    </div>
+    <div class="container-fluid" style="display: grid;">
+        <div class="row g-0">
+            <div class="col-sm-6 col-md-8">
+                <div class="container" style="display: grid; grid-template-columns:repeat(3, 1fr); gap:2px; padding:0px;">
+                    {% for post in object_list %}
+                    <div class="card-group" style="min-width: 15rem; max-width: 18rem;">
+                        <div class="col" style="padding:0px;">
+                            <div class="shadow p-3 mb-5 bg-white rounded" style="padding:0px;">
+                                <img src="{{ post.img_destaque.url }}" style="width:100%; height:168px;" class="card-img-top" alt="Hello X'ss"/>                 
+                                <div class="card-body" style="overflow: hidden; padding:2px;">
+                                    <h6 class="card-title" style="text-transform: uppercase;"><a href="{% url 'post-single' post.pk %}">{{ post.title | slice:":17" }}...</a></h6>
+                                    <span class="badge bg-dark"><a href="{% url 'category' post.category %}" style="color:white; font-size:12px; font-family:Calibri;">{{ post.category }}</a></span><br>
+                                    <p style="text-align: justify; font-size:15px; font-family:Calibri;">{{ post.meta_description | safe | slice:":100" }}...</p>
+                                    <small style="font-size:10px;"><strong>In:</strong> {{ post.data }}</small><br>
+                                    <small style="font-size:10px;"><strong>By:</strong> {{ post.author.first_name }} {{ post.author.last_name }}</small>
+                                </div>
+                                <div class="card-footer">
+                                    <center><a href="{% url 'post-single' post.pk %}"><small>Leia mais</small></a></center>
+                                </div>
+                            </div><br>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="container"  style="background-color: rgb(238, 238, 238);">
+                    <center><h4>SIBE BAR</h4></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+    <br>
+    <center>
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+        <br/><br/>
+    </center>
+{% endblock %}

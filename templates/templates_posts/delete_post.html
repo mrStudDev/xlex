@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete {% endblock %}
+
+
+{% block posts %}
+    {% if user.is_authenticated %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1>Delete Post</h1><br><br>
+                <h1>============</h1><br>
+                <h5 style="color:rgb(182, 38, 57)">DELETE THIS POST ON DATABASE?</h5>
+                <strong>Title Post:</strong>
+                <p style="text-decoration:underline;">{{ object.title }}</p>
+                <h1>============</h1>
+                <div class="mb-3">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <strong>Are you sure?</strong><br/><br>
+                        Deletar : <button class="btn btn-danger">Delete Post</button>
+                    </form>
+                </div><br>
+                <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+                <br/><br/>
+            </div>
+        </div>
+    {% else %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <p style="color:red">You're not allowed here! (Post is only for admin)</p>
+                <h1>============</h1>
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+                <br/><br/>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

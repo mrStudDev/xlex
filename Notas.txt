@@ -1,0 +1,45 @@
+(env) C:\Users\x\django_project\xlex>
+
+Deploy in to Heroku
+Python and Django 4.0
+========================================|
+User Admin                              |
+Password: xlexcrypto                    |
+========================================|
+Members register teste
+User Convidado
+Password: Convidado1234
+User anabanana
+Password: danada
+======================================
+A Autenticação
+++++++++++++++++++++++++++++++++++++++
+Apps:
+
+app_home    - In Constroction
+
+app_members     - OK! Hear is only for site members
+app_posts       - Ok! Categories Ok!
+app_crypto      -
+app_nfts        -
+app_comments    -
+app_subscribes  -
+app_emails      -
+
+app_nfts_ecommerce
+app_crypto_tansactios
+
+Pacotes intalados:
+pip install psycopg2
+pip install psycopg2-binary
+pip install -U django-jazzmin
+pip install Pillow
+pip install ckeditor
+pip install utils??
+
+Notes:
+    'jazzmin',
+
+    'django.contrib.admin',
+
+========================================

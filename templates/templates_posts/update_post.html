@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Update {% endblock %}
+
+{% block posts %}
+    {% if user.is_authenticated %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1>Update Post...</h1>
+                <p>Algumas observações podem ser feitas aqui.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="mb-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update</button>
+                </form>
+            </div>
+            <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+            <br/><br/>
+        </div>
+    {% else %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <p style="color:red">You're not allowed here! (Post is only for admin)</p>
+                <h1>============</h1>
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+                <br/><br/>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }} {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block header %}
+
+{% endblock %}
+
+{% block posts %}
+    {% if user.is_authenticated %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 style="text-transform: uppercase">{{ object.title }}</h1>
+                <span class="badge bg-dark" style="color:white; font-size:12px; font-family:Calibri;">{{ object.category }}</span> | <small>{{ object.data }}</small><br>
+                <small>
+                    <img src="{{ object.img_destaque.url }}" style="width:300px; margin-top:5px;" class="card-img-top" alt="Hello X'ss"/><br>
+                    <p style="font-size:12px; margin-top:5px;"><strong>Author</strong>:  {{ object.author.first_name }} {{ object.author.last_name }}</p>
+                    <a href="{% url 'update_post' object.pk %}">(Edit Post)</a>
+                    <a href="{% url 'delete_post' object.pk %}"> - (Delete Post)</a>
+                </small>
+
+            </div>
+        </div>
+        <div class="container">
+        <small style="font-size:18px; font-family:Calibri; text-align:justify">{{ object.content | safe }}</small><hr>
+            <h6><strong>Tags</strong> | {{ object.tags }}</h6><br>
+            <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+        </div>
+    {% else %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 style="text-transform: uppercase">{{ object.title }}</h1>
+                <span class="badge bg-dark" style="color:white; font-size:12px; font-family:Calibri;">{{ object.category }}</span> | <small>{{ object.data }}</small><br>
+                <img src="{{ object.img_destaque.url }}" style="width:300px; margin-top:5px;" class="card-img-top" alt="Hello X'ss"/><br>
+                <p style="font-size:12px; margin-top:5px;"><strong>Author</strong>:  {{ object.author.first_name }} {{ object.author.last_name }}</p>
+            </div>
+        </div>
+        <div class="container">
+            <small style="font-size:18px; font-family:Calibri; text-align:justify">{{ object.content | safe }}</small><hr>
+            <h6><strong>Tags</strong> | {{ object.tags }}</h6><br>
+            <a href="{% url 'posts-list' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back in Posts list</small></a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg px-4"> <small>Go back Home</small></a>
+            <br/><br><br>
+        </div>
+    {% endif %}
+    <br><br>
+{% endblock %}    
+
